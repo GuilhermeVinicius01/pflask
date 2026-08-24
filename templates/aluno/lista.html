@@ -1,0 +1,109 @@
+{% include 'dashboard/cabecalho.html' %}
+
+<h1 class="mb-4">Lista Alunos</h1>
+
+<div class="row">
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Idade</th>
+                <th>Cidade</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set alunos = [
+                {'id': 1, 'nome': 'João Victor Almeida', 'idade': 18, 'cidade': 'Parnaiba'},
+                {'id': 2, 'nome': 'Mariana Alves Costa', 'idade': 17, 'cidade': 'Parnaiba'},
+                {'id': 3, 'nome': 'Pedro Henrique Sousa', 'idade': 18, 'cidade': 'Parnaiba'},
+                {'id': 4, 'nome': 'Larissa Vitória Mendes', 'idade': 17, 'cidade': 'Parnaiba'},
+                {'id': 5, 'nome': 'Mateus Eduardo Rocha', 'idade': 18, 'cidade': 'Parnaiba'},
+                {'id': 6, 'nome': 'Ana Clara Ferreira', 'idade': 19, 'cidade': 'Teresina'},
+                {'id': 7, 'nome': 'Bruno Lima Santos', 'idade': 20, 'cidade': 'Fortaleza'},
+                {'id': 8, 'nome': 'Carla Souza Oliveira', 'idade': 18, 'cidade': 'São Luís'},
+                {'id': 9, 'nome': 'Daniel Pereira Costa', 'idade': 21, 'cidade': 'Recife'},
+                {'id': 10, 'nome': 'Eduarda Martins Silva', 'idade': 19, 'cidade': 'Salvador'},
+                {'id': 11, 'nome': 'Felipe Alves Rocha', 'idade': 22, 'cidade': 'Brasília'},
+                {'id': 12, 'nome': 'Gabriela Nunes Lima', 'idade': 20, 'cidade': 'Belém'},
+                {'id': 13, 'nome': 'Henrique Oliveira Santos', 'idade': 18, 'cidade': 'Manaus'},
+                {'id': 14, 'nome': 'Isabela Costa Rodrigues', 'idade': 19, 'cidade': 'Curitiba'},
+                {'id': 15, 'nome': 'João Pedro Silva', 'idade': 21, 'cidade': 'Porto Alegre'},
+                {'id': 16, 'nome': 'Karina Santos Almeida', 'idade': 20, 'cidade': 'Florianópolis'},
+                {'id': 17, 'nome': 'Leonardo Ferreira Gomes', 'idade': 22, 'cidade': 'Vitória'},
+                {'id': 18, 'nome': 'Mariana Oliveira Costa', 'idade': 19, 'cidade': 'Natal'},
+                {'id': 19, 'nome': 'Nicolas Rodrigues Silva', 'idade': 18, 'cidade': 'João Pessoa'},
+                {'id': 20, 'nome': 'Olivia Santos Pereira', 'idade': 21, 'cidade': 'Maceió'},
+                {'id': 21, 'nome': 'Paulo Henrique Lima', 'idade': 20, 'cidade': 'Aracaju'},
+                {'id': 22, 'nome': 'Quintiliano Souza Rocha', 'idade': 22, 'cidade': 'Campo Grande'},
+                {'id': 23, 'nome': 'Rafaela Martins Costa', 'idade': 19, 'cidade': 'Cuiabá'},
+                {'id': 24, 'nome': 'Samuel Oliveira Alves', 'idade': 18, 'cidade': 'Goiânia'},
+                {'id': 25, 'nome': 'Tatiane Silva Santos', 'idade': 20, 'cidade': 'Uberlândia'},
+                {'id': 26, 'nome': 'Ulysses Pereira Lima', 'idade': 21, 'cidade': 'Campinas'},
+                {'id': 27, 'nome': 'Valentina Costa Rodrigues', 'idade': 19, 'cidade': 'São José dos Campos'},
+                {'id': 28, 'nome': 'Wagner Almeida Silva', 'idade': 22, 'cidade': 'Ribeirão Preto'},
+                {'id': 29, 'nome': 'Xavier Oliveira Santos', 'idade': 20, 'cidade': 'Sorocaba'},
+                {'id': 30, 'nome': 'Yasmin Ferreira Costa', 'idade': 18, 'cidade': 'Santos'},
+                {'id': 31, 'nome': 'Zaqueu Rodrigues Alves', 'idade': 21, 'cidade': 'Osasco'},
+                {'id': 32, 'nome': 'Alice Nunes Lima', 'idade': 19, 'cidade': 'Guarulhos'},
+                {'id': 33, 'nome': 'Bernardo Silva Rocha', 'idade': 22, 'cidade': 'Santo André'},
+                {'id': 34, 'nome': 'Camila Oliveira Santos', 'idade': 20, 'cidade': 'São Bernardo'},
+                {'id': 35, 'nome': 'Davi Costa Almeida', 'idade': 18, 'cidade': 'Diadema'},
+                {'id': 36, 'nome': 'Elisa Martins Pereira', 'idade': 21, 'cidade': 'Mogi das Cruzes'},
+                {'id': 37, 'nome': 'Fernando Santos Lima', 'idade': 19, 'cidade': 'Itaquaquecetuba'},
+                {'id': 38, 'nome': 'Giovanna Alves Rocha', 'idade': 22, 'cidade': 'Suzano'},
+                {'id': 39, 'nome': 'Heitor Oliveira Costa', 'idade': 20, 'cidade': 'Taboão da Serra'},
+                {'id': 40, 'nome': 'Isadora Ferreira Silva', 'idade': 18, 'cidade': 'Barueri'},
+                {'id': 41, 'nome': 'João Lucas Rodrigues', 'idade': 21, 'cidade': 'Embu das Artes'},
+                {'id': 42, 'nome': 'Laura Nunes Santos', 'idade': 19, 'cidade': 'Cotia'},
+                {'id': 43, 'nome': 'Miguel Oliveira Almeida', 'idade': 22, 'cidade': 'Itapevi'},
+                {'id': 44, 'nome': 'Natália Costa Lima', 'idade': 20, 'cidade': 'Votorantim'},
+                {'id': 45, 'nome': 'Otávio Pereira Rocha', 'idade': 18, 'cidade': 'Jundiaí'},
+                {'id': 46, 'nome': 'Patrícia Santos Oliveira', 'idade': 21, 'cidade': 'Piracicaba'},
+                {'id': 47, 'nome': 'Rafael Alves Silva', 'idade': 19, 'cidade': 'Limeira'},
+                {'id': 48, 'nome': 'Sabrina Costa Rodrigues', 'idade': 22, 'cidade': 'Americana'},
+                {'id': 49, 'nome': 'Thiago Oliveira Santos', 'idade': 20, 'cidade': 'Santa Bárbara'},
+                {'id': 50, 'nome': 'Vitória Lima Pereira', 'idade': 18, 'cidade': 'Sumaré'},
+                {'id': 51, 'nome': 'William Silva Almeida', 'idade': 21, 'cidade': 'Hortolândia'},
+                {'id': 52, 'nome': 'Yara Santos Costa', 'idade': 19, 'cidade': 'Indaiatuba'},
+                {'id': 53, 'nome': 'Adriano Rodrigues Lima', 'idade': 22, 'cidade': 'São Carlos'},
+                {'id': 54, 'nome': 'Beatriz Oliveira Silva', 'idade': 20, 'cidade': 'Araraquara'},
+                {'id': 55, 'nome': 'Caio Alves Santos', 'idade': 18, 'cidade': 'Rio Claro'},
+                {'id': 56, 'nome': 'Daniela Costa Pereira', 'idade': 21, 'cidade': 'Botucatu'},
+                {'id': 57, 'nome': 'Erick Ferreira Rocha', 'idade': 19, 'cidade': 'Jaú'},
+                {'id': 58, 'nome': 'Fabiana Nunes Almeida', 'idade': 22, 'cidade': 'Bauru'},
+                {'id': 59, 'nome': 'Gabriel Oliveira Lima', 'idade': 20, 'cidade': 'Marília'},
+                {'id': 60, 'nome': 'Helena Santos Silva', 'idade': 18, 'cidade': 'Franca'},
+                {'id': 61, 'nome': 'Igor Pereira Costa', 'idade': 21, 'cidade': 'Sertãozinho'},
+                {'id': 62, 'nome': 'Juliana Alves Rodrigues', 'idade': 19, 'cidade': 'Ribeirão Bonito'},
+                {'id': 63, 'nome': 'Kaio Oliveira Santos', 'idade': 22, 'cidade': 'Pirassununga'},
+                {'id': 64, 'nome': 'Leticia Costa Silva', 'idade': 20, 'cidade': 'Porto Ferreira'},
+                {'id': 65, 'nome': 'Marcelo Lima Almeida', 'idade': 18, 'cidade': 'Mogi Guaçu'}
+            ] %}
+
+            {% for aluno in alunos %}
+            <tr>
+                <td>{{ aluno.id }}</td>
+                <td>{{ aluno.nome }}</td>
+                <td>{{ aluno.idade }}</td>
+                <td>{{ aluno.cidade }}</td>
+                <td>
+                    <a href="/aluno/editar/{{ aluno.id }}" class="btn btn-primary btn-sm">Editar</a>
+                    <a href="/aluno/remover/{{ aluno.id }}"
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('Tem certeza que deseja remover este registro?');">
+                        Remover
+                    </a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5" class="text-center">Nenhum aluno cadastrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% include 'dashboard/rodape.html' %}
