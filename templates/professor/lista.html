@@ -3,7 +3,94 @@
 <h1 class="mb-4">Lista Professores</h1>
 
 <div class="row">
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Idade</th>
+                <th>Disciplina</th>
+                <th>Cidade</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set professores = [
+                {'id': 1, 'nome': 'Dr. Carlos Alberto Silva', 'idade': 45, 'disciplina': 'Matemática', 'cidade': 'Parnaiba'},
+                {'id': 2, 'nome': 'Dra. Maria Helena Santos', 'idade': 42, 'disciplina': 'Português', 'cidade': 'Teresina'},
+                {'id': 3, 'nome': 'Prof. Roberto Oliveira', 'idade': 38, 'disciplina': 'História', 'cidade': 'Fortaleza'},
+                {'id': 4, 'nome': 'Profa. Ana Paula Costa', 'idade': 40, 'disciplina': 'Geografia', 'cidade': 'São Luís'},
+                {'id': 5, 'nome': 'Prof. João Mendes Lima', 'idade': 50, 'disciplina': 'Física', 'cidade': 'Recife'},
+                {'id': 6, 'nome': 'Dra. Fernanda Souza Rocha', 'idade': 35, 'disciplina': 'Química', 'cidade': 'Salvador'},
+                {'id': 7, 'nome': 'Prof. Ricardo Alves', 'idade': 47, 'disciplina': 'Biologia', 'cidade': 'Brasília'},
+                {'id': 8, 'nome': 'Profa. Patrícia Nunes', 'idade': 39, 'disciplina': 'Inglês', 'cidade': 'Belém'},
+                {'id': 9, 'nome': 'Prof. Eduardo Martins', 'idade': 44, 'disciplina': 'Educação Física', 'cidade': 'Manaus'},
+                {'id': 10, 'nome': 'Dra. Camila Oliveira', 'idade': 36, 'disciplina': 'Artes', 'cidade': 'Curitiba'},
+                {'id': 11, 'nome': 'Prof. André Pereira', 'idade': 52, 'disciplina': 'Filosofia', 'cidade': 'Porto Alegre'},
+                {'id': 12, 'nome': 'Profa. Beatriz Lima', 'idade': 41, 'disciplina': 'Sociologia', 'cidade': 'Florianópolis'},
+                {'id': 13, 'nome': 'Prof. Fernando Santos', 'idade': 48, 'disciplina': 'Programação', 'cidade': 'Vitória'},
+                {'id': 14, 'nome': 'Dra. Juliana Rodrigues', 'idade': 37, 'disciplina': 'Banco de Dados', 'cidade': 'Natal'},
+                {'id': 15, 'nome': 'Prof. Lucas Almeida', 'idade': 43, 'disciplina': 'Redes', 'cidade': 'João Pessoa'},
+                {'id': 16, 'nome': 'Profa. Vanessa Costa', 'idade': 46, 'disciplina': 'Segurança', 'cidade': 'Maceió'},
+                {'id': 17, 'nome': 'Prof. Gustavo Silva', 'idade': 39, 'disciplina': 'Ética', 'cidade': 'Aracaju'},
+                {'id': 18, 'nome': 'Dra. Renata Ferreira', 'idade': 51, 'disciplina': 'Psicologia', 'cidade': 'Campo Grande'},
+                {'id': 19, 'nome': 'Prof. Bruno Rocha', 'idade': 40, 'disciplina': 'Estatística', 'cidade': 'Cuiabá'},
+                {'id': 20, 'nome': 'Profa. Daniela Santos', 'idade': 38, 'disciplina': 'Cálculo', 'cidade': 'Goiânia'},
+                {'id': 21, 'nome': 'Prof. Marcelo Lima', 'idade': 49, 'disciplina': 'Álgebra', 'cidade': 'Uberlândia'},
+                {'id': 22, 'nome': 'Dra. Tatiane Oliveira', 'idade': 42, 'disciplina': 'Geometria', 'cidade': 'Campinas'},
+                {'id': 23, 'nome': 'Prof. Rodrigo Alves', 'idade': 44, 'disciplina': 'Trigonometria', 'cidade': 'São José dos Campos'},
+                {'id': 24, 'nome': 'Profa. Simone Pereira', 'idade': 37, 'disciplina': 'Literatura', 'cidade': 'Ribeirão Preto'},
+                {'id': 25, 'nome': 'Prof. Thiago Costa', 'idade': 46, 'disciplina': 'Gramática', 'cidade': 'Sorocaba'},
+                {'id': 26, 'nome': 'Dra. Cristina Nunes', 'idade': 50, 'disciplina': 'Redação', 'cidade': 'Santos'},
+                {'id': 27, 'nome': 'Prof. Fábio Santos', 'idade': 41, 'disciplina': 'História Antiga', 'cidade': 'Osasco'},
+                {'id': 28, 'nome': 'Profa. Márcia Lima', 'idade': 43, 'disciplina': 'História Moderna', 'cidade': 'Guarulhos'},
+                {'id': 29, 'nome': 'Prof. Alexandre Rocha', 'idade': 38, 'disciplina': 'História do Brasil', 'cidade': 'Santo André'},
+                {'id': 30, 'nome': 'Dra. Paula Almeida', 'idade': 45, 'disciplina': 'Cartografia', 'cidade': 'São Bernardo'},
+                {'id': 31, 'nome': 'Prof. Sérgio Oliveira', 'idade': 42, 'disciplina': 'Climatologia', 'cidade': 'Diadema'},
+                {'id': 32, 'nome': 'Profa. Luciana Silva', 'idade': 39, 'disciplina': 'Astronomia', 'cidade': 'Mogi das Cruzes'},
+                {'id': 33, 'nome': 'Prof. Rafael Santos', 'idade': 47, 'disciplina': 'Mecânica', 'cidade': 'Itaquaquecetuba'},
+                {'id': 34, 'nome': 'Dra. Carla Ferreira', 'idade': 36, 'disciplina': 'Termodinâmica', 'cidade': 'Suzano'},
+                {'id': 35, 'nome': 'Prof. Leandro Costa', 'idade': 44, 'disciplina': 'Óptica', 'cidade': 'Taboão da Serra'},
+                {'id': 36, 'nome': 'Profa. Gisele Nunes', 'idade': 50, 'disciplina': 'Química Orgânica', 'cidade': 'Barueri'},
+                {'id': 37, 'nome': 'Prof. Allan Pereira', 'idade': 41, 'disciplina': 'Química Inorgânica', 'cidade': 'Embu das Artes'},
+                {'id': 38, 'nome': 'Dra. Priscila Lima', 'idade': 43, 'disciplina': 'Genética', 'cidade': 'Cotia'},
+                {'id': 39, 'nome': 'Prof. Wellington Silva', 'idade': 48, 'disciplina': 'Ecologia', 'cidade': 'Itapevi'},
+                {'id': 40, 'nome': 'Profa. Amanda Rocha', 'idade': 37, 'disciplina': 'Evolução', 'cidade': 'Votorantim'},
+                {'id': 41, 'nome': 'Prof. Denis Oliveira', 'idade': 45, 'disciplina': 'Inglês Avançado', 'cidade': 'Jundiaí'},
+                {'id': 42, 'nome': 'Dra. Lúcia Santos', 'idade': 42, 'disciplina': 'Espanhol', 'cidade': 'Piracicaba'},
+                {'id': 43, 'nome': 'Prof. José Almeida', 'idade': 49, 'disciplina': 'Francês', 'cidade': 'Limeira'},
+                {'id': 44, 'nome': 'Profa. Neusa Costa', 'idade': 38, 'disciplina': 'Futsal', 'cidade': 'Americana'},
+                {'id': 45, 'nome': 'Prof. Artur Silva', 'idade': 44, 'disciplina': 'Basquetebol', 'cidade': 'Santa Bárbara'},
+                {'id': 46, 'nome': 'Dra. Eliane Pereira', 'idade': 41, 'disciplina': 'Handebol', 'cidade': 'Sumaré'},
+                {'id': 47, 'nome': 'Prof. Júlio Rocha', 'idade': 46, 'disciplina': 'Teatro', 'cidade': 'Hortolândia'},
+                {'id': 48, 'nome': 'Profa. Sandra Lima', 'idade': 39, 'disciplina': 'Música', 'cidade': 'Indaiatuba'},
+                {'id': 49, 'nome': 'Prof. Elias Santos', 'idade': 50, 'disciplina': 'Dança', 'cidade': 'São Carlos'},
+                {'id': 50, 'nome': 'Dra. Gláucia Almeida', 'idade': 43, 'disciplina': 'Pintura', 'cidade': 'Araraquara'}
+            ] %}
 
+            {% for professor in professores %}
+            <tr>
+                <td>{{ professor.id }}</td>
+                <td>{{ professor.nome }}</td>
+                <td>{{ professor.idade }}</td>
+                <td>{{ professor.disciplina }}</td>
+                <td>{{ professor.cidade }}</td>
+                <td>
+                    <a href="/professor/editar/{{ professor.id }}" class="btn btn-primary btn-sm">Editar</a>
+                    <a href="/professor/remover/{{ professor.id }}"
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('Tem certeza que deseja remover este registro?');">
+                        Remover
+                    </a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" class="text-center">Nenhum professor cadastrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 
 {% include 'dashboard/rodape.html' %}

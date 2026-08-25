@@ -12,6 +12,10 @@ def home():
 def sobre_o_sistema():
     return render_template ('dashboard/sobre.html')
 
+@app.route('/contato')
+def contato_dev():
+    return render_template ('dashboard/contato.html')
+
 @app.route('/aluno')
 def lista_aluno():
     return render_template ('aluno/lista.html')
