@@ -22,7 +22,7 @@ def lista_aluno():
 
 @app.route('/professor')
 def lista_professor():
-    return render_template ('professor/lista.html')
+    return render_template ('proofessor/lista.html')
 
 
 if __name__ == '__main__':
