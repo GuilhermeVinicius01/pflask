@@ -30,18 +30,32 @@ def listar_aluno():
     return render_template('aluno/lista.html', lista=lista)
 
 @app.route('/professor')
-def lista_professor():
+def listar_professor():
         # Conecta ao banco de dados
     DB_PATH = "banco_escola.db"
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     # Executa consulta SQL
-    cursor.execute('SELECT id, nome, idade, cidade FROM professor')
+    cursor.execute('SELECT id, nome, disciplina FROM professor')
     # Obtém todos os registros
     lista = cursor.fetchall()
     # Fecha conexão
     conn.close()
     return render_template ('professor/lista.html', lista=lista)
+
+@app.route('/turma')
+def listar_turma():
+    # Conecta ao banco de dados
+    DB_PATH = "banco_escola.db"
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    # Executa consulta SQL
+    cursor.execute('SELECT turma.id, semestre, nome_curso, professor.nome FROM turma JOIN curso ON curso.id = turma.curso_id JOIN professor ON professor.id = turma.professor_id')
+    # Obtém todos os registros
+    lista = cursor.fetchall()
+    # Fecha conexão
+    conn.close()
+    return render_template ('turma/lista.html', lista=lista)
 
 
 if __name__ == '__main__':
