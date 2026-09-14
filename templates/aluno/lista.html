@@ -16,13 +16,13 @@
 
             {% for aluno in lista %}
             <tr>
-                <td>{{ aluno.id }}</td>
-                <td>{{ aluno.nome }}</td>
-                <td>{{ aluno.idade }}</td>
-                <td>{{ aluno.cidade }}</td>
+                <td>{{ aluno[0] }}</td>
+                <td>{{ aluno[1] }}</td>
+                <td>{{ aluno[2] }}</td>
+                <td>{{ aluno[3] }}</td>
                 <td>
-                    <a href="/aluno/editar/{{ aluno.id }}" class="btn btn-primary btn-sm">Editar</a>
-                    <a href="/aluno/remover/{{ aluno.id }}"
+                    <a href="/aluno/editar/{{ aluno[0] }}" class="btn btn-primary btn-sm">Editar</a>
+                    <a href="/aluno/remover/{{ aluno[0] }}"
                        class="btn btn-danger btn-sm"
                        onclick="return confirm('Tem certeza que deseja remover este registro?');">
                         Remover
