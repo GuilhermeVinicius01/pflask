@@ -18,7 +18,7 @@ def contato_dev():
     return render_template ('dashboard/contato.html')
 
 @app.route('/aluno')
-def lista_aluno():
+def listar_aluno():
     # Conecta ao banco de dados
     DB_PATH = "banco_escola.db"
     conn = sqlite3.connect(DB_PATH)
