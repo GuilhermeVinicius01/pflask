@@ -7,10 +7,7 @@ class ProfessorDAO:
         conn = get_connection()
         cursor = conn.cursor()
 
-        cursor.execute(
-            "SELECT id, nome, disciplina FROM professor"
-        )
-
+        cursor.execute("SELECT id, nome, disciplina FROM professor")
         lista = cursor.fetchall()
 
         conn.close()

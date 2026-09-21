@@ -7,10 +7,7 @@ class AlunoDAO:
         conn = get_connection()
         cursor = conn.cursor()
 
-        cursor.execute(
-            "SELECT id, nome, idade, cidade FROM aluno"
-        )
-
+        cursor.execute("SELECT id, nome, idade, cidade FROM aluno")
         lista = cursor.fetchall()
 
         conn.close()
