@@ -1,0 +1,37 @@
+{% include 'dashboard/cabecalho.html' %}
+
+<h1 class="mb-4">Dados Cadastrados</h1>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <p>
+            <strong>Nome:</strong>
+            {{ nome }}
+        </p>
+
+        <p>
+            <strong>Data de Nascimento:</strong>
+            {{ data_nascimento }}
+        </p>
+
+        <p>
+            <strong>CPF:</strong>
+            {{ cpf }}
+        </p>
+
+        <p>
+            <strong>Nome da Mãe:</strong>
+            {{ nome_mae }}
+        </p>
+
+    </div>
+
+</div>
+
+<a href="/desafio" class="btn btn-primary mt-3">
+    Voltar
+</a>
+
+{% include 'dashboard/rodape.html' %}

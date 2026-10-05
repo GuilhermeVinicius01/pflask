@@ -1,0 +1,41 @@
+{% include 'dashboard/cabecalho.html' %}
+
+<h1 class="mb-4">Login</h1>
+
+<form action="/login" method="POST">
+
+    <div class="mb-3">
+        <label for="usuario" class="form-label">
+            Usuário
+        </label>
+
+        <input
+            type="text"
+            name="usuario"
+            id="usuario"
+            class="form-control"
+            required
+        >
+    </div>
+
+    <div class="mb-3">
+        <label for="senha" class="form-label">
+            Senha
+        </label>
+
+        <input
+            type="password"
+            name="senha"
+            id="senha"
+            class="form-control"
+            required
+        >
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Entrar
+    </button>
+
+</form>
+
+{% include 'dashboard/rodape.html' %}
