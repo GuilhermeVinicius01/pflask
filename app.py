@@ -45,7 +45,7 @@ def menu_exercicios():
     return render_template('saudacao/menu.html')
 
 
-@app.route('/saudacao1/<nome>')
+@app.route('/saudacao/<nome>')
 def saudacao1(nome):
     return f'Olá, {nome}! Seja bem-vindo ao sistema.'
 
