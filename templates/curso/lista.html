@@ -1,0 +1,33 @@
+{% include 'dashboard/cabecalho.html' %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="mb-0">Lista Curso</h1>
+    <a href="/curso/form" class="btn btn-success">+ Novo</a>
+</div>
+
+<div class="row">
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nome do Curso</th>
+                <th>Duração (anos)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for curso in lista %}
+            <tr>
+                <td>{{ curso[0] }}</td>
+                <td>{{ curso[1] }}</td>
+                <td>{{ curso[2] }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3" class="text-center">Nenhum registro cadastrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% include 'dashboard/rodape.html' %}

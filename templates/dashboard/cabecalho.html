@@ -52,11 +52,20 @@
         <a href="/">🏠 Início</a>
         <a href="/aluno">👨‍🎓 Alunos</a>
         <a href="/professor">👩‍🏫 Professores</a>
+        <a href="/curso">🎓 Cursos</a>
         <a href="/turma">📚 Turmas</a>
         <a href="/sobre">🔎 Sobre</a>
         <a href="/contato">📩 Contato</a>
-        <a href="/saudacao1">🚪 Saudação</a>
+        <a href="/saudacao">🚪 Saudação</a>
     </nav>
 
     <!-- Main content -->
     <div class="main">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}

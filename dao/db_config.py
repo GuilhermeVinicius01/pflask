@@ -1,8 +1,7 @@
-import sqlite3
+import os
+import psycopg2
 
-
-DB_PATH = "banco_escola.db"
-
+DATABASE_URL = os.environ.get("POSTGRES_URL") or os.environ.get("DATABASE_URL")
 
 def get_connection():
-    return sqlite3.connect(DB_PATH)
+    return psycopg2.connect(DATABASE_URL)
