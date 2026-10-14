@@ -40,7 +40,7 @@ def listar_turma():
     lista = turma_dao.listar_turmas()
     return render_template('turma/lista.html',lista=lista)
 
-@app.route('/exercicios')
+@app.route('/saudacao')
 def menu_exercicios():
     return render_template('saudacao/menu.html')
 
