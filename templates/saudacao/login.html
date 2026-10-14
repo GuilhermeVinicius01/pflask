@@ -1,0 +1,20 @@
+{% include 'dashboard/cabecalho.html' %}
+
+<h1 class="mb-4">Login (Método POST)</h1>
+
+<form action="/login" method="POST">
+    <div class="mb-3">
+        <label for="usuario" class="form-label">Usuário</label>
+        <input type="text" class="form-control" id="usuario" name="usuario" required>
+    </div>
+    <div class="mb-3">
+        <label for="senha" class="form-label">Senha</label>
+        <input type="password" class="form-control" id="senha" name="senha" required>
+    </div>
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-warning">Entrar</button>
+        <a href="/saudacao" class="btn btn-secondary">Voltar</a>
+    </div>
+</form>
+
+{% include 'dashboard/rodape.html' %}

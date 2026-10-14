@@ -122,7 +122,7 @@ def listar_turma():
 def menu_exercicios():
     return render_template('saudacao/menu.html')
 
-@app.route('/saudacao/<nome>')
+@app.route('/saudacao1/<nome>')
 def saudacao1(nome):
     return f'Olá, {nome}! Seja bem-vindo ao sistema.'
 

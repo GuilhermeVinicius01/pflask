@@ -1,0 +1,16 @@
+{% include 'dashboard/cabecalho.html' %}
+
+<h1 class="mb-4">Dados Recebidos</h1>
+
+<table class="table table-bordered table-striped w-auto">
+    <tbody>
+        <tr><th>Nome</th><td>{{ nome }}</td></tr>
+        <tr><th>Data de Nascimento</th><td>{{ data_nascimento }}</td></tr>
+        <tr><th>CPF</th><td>{{ cpf }}</td></tr>
+        <tr><th>Nome da Mãe</th><td>{{ nome_mae }}</td></tr>
+    </tbody>
+</table>
+
+<a href="/desafio" class="btn btn-primary">Novo cadastro</a>
+
+{% include 'dashboard/rodape.html' %}
