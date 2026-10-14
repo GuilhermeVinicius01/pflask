@@ -1,15 +1,28 @@
+
 import os
 import psycopg2
 
 
 def _pegar_url():
-    for nome in ("POSTGRES_URL", "DATABASE_URL",
-                 "STORAGE_POSTGRES_URL", "STORAGE_DATABASE_URL"):
+    nomes = (
+        "POSTGRES_URL",
+        "DATABASE_URL",
+        "STORAGE_POSTGRES_URL",
+        "STORAGE_DATABASE_URL",
+    )
+
+    for nome in nomes:
         url = os.environ.get(nome)
+
         if url:
             return url
-    return None
+
+    raise RuntimeError(
+        "URL do PostgreSQL não encontrada. "
+        "Configure POSTGRES_URL ou DATABASE_URL."
+    )
 
 
 def get_connection():
-    return psycopg2.connect(_pegar_url())
+    url = _pegar_url()
+    return psycopg2.connect(url)
