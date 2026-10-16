@@ -9,9 +9,6 @@ from dao.turma_dao import TurmaDAO
 
 
 app = Flask(__name__)
-
-# Chave usada pelo Flask para assinar a sessão (necessária para flash()).
-# Em produção, defina a variável de ambiente SECRET_KEY na Vercel.
 app.secret_key = os.environ.get("SECRET_KEY", "chave-secreta-de-desenvolvimento")
 
 
@@ -33,8 +30,6 @@ def sobre_o_sistema():
 def contato_dev():
     return render_template('dashboard/contato.html')
 
-
-# ---------------- ALUNO ----------------
 @app.route('/aluno')
 def listar_aluno():
     lista = aluno_dao.listar_alunos()
@@ -42,7 +37,6 @@ def listar_aluno():
 
 @app.route('/aluno/form')
 def form_aluno():
-    # tupla vazia: (id, nome, idade, cidade)
     return render_template('aluno/form.html', aluno=(None, '', '', ''))
 
 @app.route('/aluno/salvar/', methods=['POST'])
@@ -59,8 +53,6 @@ def salvar_aluno(id=None):
 
     return redirect('/aluno')
 
-
-# ---------------- PROFESSOR ----------------
 @app.route('/professor')
 def listar_professor():
     lista = professor_dao.listar_professores()
@@ -84,8 +76,6 @@ def salvar_professor(id=None):
 
     return redirect('/professor')
 
-
-# ---------------- CURSO ----------------
 @app.route('/curso')
 def listar_curso():
     lista = curso_dao.listar_cursos()
@@ -93,7 +83,6 @@ def listar_curso():
 
 @app.route('/curso/form')
 def form_curso():
-    # (id, nome_curso, duracao)
     return render_template('curso/form.html', curso=(None, '', ''))
 
 @app.route('/curso/salvar/', methods=['POST'])
@@ -110,14 +99,11 @@ def salvar_curso(id=None):
     return redirect('/curso')
 
 
-# ---------------- TURMA ----------------
 @app.route('/turma')
 def listar_turma():
     lista = turma_dao.listar_turmas()
     return render_template('turma/lista.html', lista=lista)
 
-
-# ---------------- SAUDAÇÃO / DESAFIO ----------------
 @app.route('/saudacao')
 def menu_exercicios():
     return render_template('saudacao/menu.html')
