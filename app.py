@@ -98,7 +98,6 @@ def salvar_curso(id=None):
 
     return redirect('/curso')
 
-
 @app.route('/turma')
 def listar_turma():
     lista = turma_dao.listar_turmas()
