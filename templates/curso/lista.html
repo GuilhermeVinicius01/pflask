@@ -12,6 +12,7 @@
                 <th>ID</th>
                 <th>Nome do Curso</th>
                 <th>Duração (anos)</th>
+                <th>Ação</th>
             </tr>
         </thead>
         <tbody>
@@ -20,10 +21,13 @@
                 <td>{{ curso[0] }}</td>
                 <td>{{ curso[1] }}</td>
                 <td>{{ curso[2] }}</td>
+                <td>
+                    <a href="/curso/editar/{{ curso[0] }}" class="btn btn-primary btn-sm">Editar</a>
+                </td>
             </tr>
             {% else %}
             <tr>
-                <td colspan="3" class="text-center">Nenhum registro cadastrado.</td>
+                <td colspan="4" class="text-center">Nenhum registro cadastrado.</td>
             </tr>
             {% endfor %}
         </tbody>

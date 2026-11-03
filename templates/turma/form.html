@@ -1,0 +1,43 @@
+{% include 'dashboard/cabecalho.html' %}
+
+<h1 class="mb-4">{{ "Editar" if turma[0] else "Cadastrar" }} Turma</h1>
+
+<div class="row">
+  <div class="col-12">
+    <form action="/turma/salvar/" method="POST">
+        <input type="hidden" name="id" value="{{ turma[0] or '' }}">
+
+        <div class="mb-3">
+          <label for="semestre" class="form-label">Semestre</label>
+          <input type="text" class="form-control" id="semestre" name="semestre" value="{{ turma[1] }}" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="curso_id" class="form-label">Curso</label>
+          <select class="form-select" id="curso_id" name="curso_id" required>
+            <option value="" disabled {{ 'selected' if not turma[2] }}>Selecione...</option>
+            {% for c in cursos %}
+            <option value="{{ c[0] }}" {{ 'selected' if c[0] == turma[2] }}>{{ c[1] }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="professor_id" class="form-label">Professor</label>
+          <select class="form-select" id="professor_id" name="professor_id" required>
+            <option value="" disabled {{ 'selected' if not turma[3] }}>Selecione...</option>
+            {% for p in professores %}
+            <option value="{{ p[0] }}" {{ 'selected' if p[0] == turma[3] }}>{{ p[1] }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-primary">Salvar</button>
+          <a href="/turma" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+  </div>
+</div>
+
+{% include 'dashboard/rodape.html' %}

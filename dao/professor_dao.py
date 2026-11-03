@@ -5,23 +5,37 @@ class ProfessorDAO:
 
     def listar_professores(self):
         conn = get_connection()
-        cursor = conn.cursor()
+        try:
+            cursor = conn.cursor()
+            cursor.execute("SELECT id, nome, disciplina FROM professor ORDER BY id")
+            return cursor.fetchall()
+        finally:
+            conn.close()
 
-        cursor.execute("SELECT id, nome, disciplina FROM professor")
-        lista = cursor.fetchall()
-
-        conn.close()
-
-        return lista
+    def buscar_por_id(self, id):
+        conn = get_connection()
+        try:
+            cursor = conn.cursor()
+            cursor.execute("SELECT id, nome, disciplina FROM professor WHERE id = %s", (id,))
+            return cursor.fetchone()
+        finally:
+            conn.close()
 
     def salvar(self, id, nome, disciplina):
+        """Se id for None faz INSERT, senão faz UPDATE."""
         conn = get_connection()
-        cursor = conn.cursor()
         try:
-            cursor.execute(
-                'INSERT INTO professor (nome, disciplina) VALUES (%s, %s)',
-                (nome, disciplina)
-            )
+            cursor = conn.cursor()
+            if id:
+                cursor.execute(
+                    'UPDATE professor SET nome = %s, disciplina = %s WHERE id = %s',
+                    (nome, disciplina, id)
+                )
+            else:
+                cursor.execute(
+                    'INSERT INTO professor (nome, disciplina) VALUES (%s, %s)',
+                    (nome, disciplina)
+                )
             conn.commit()
             return {"status": "ok"}
         except Exception as e:

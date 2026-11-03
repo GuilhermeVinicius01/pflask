@@ -13,6 +13,7 @@
                 <th>Nome</th>
                 <th>Idade</th>
                 <th>Cidade</th>
+                <th>Ação</th>
             </tr>
         </thead>
         <tbody>
@@ -22,10 +23,13 @@
                 <td>{{ aluno[1] }}</td>
                 <td>{{ aluno[2] }}</td>
                 <td>{{ aluno[3] }}</td>
+                <td>
+                    <a href="/aluno/editar/{{ aluno[0] }}" class="btn btn-primary btn-sm">Editar</a>
+                </td>
             </tr>
             {% else %}
             <tr>
-                <td colspan="4" class="text-center">Nenhum registro cadastrado.</td>
+                <td colspan="5" class="text-center">Nenhum registro cadastrado.</td>
             </tr>
             {% endfor %}
         </tbody>

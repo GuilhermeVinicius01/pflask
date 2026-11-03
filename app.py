@@ -39,8 +39,17 @@ def listar_aluno():
 def form_aluno():
     return render_template('aluno/form.html', aluno=(None, '', '', ''))
 
+@app.route('/aluno/editar/<int:id>')
+def editar_aluno(id):
+    aluno = aluno_dao.buscar_por_id(id)
+    if aluno is None:
+        flash("Aluno não encontrado.", "danger")
+        return redirect('/aluno')
+    return render_template('aluno/form.html', aluno=aluno)
+
 @app.route('/aluno/salvar/', methods=['POST'])
-def salvar_aluno(id=None):
+def salvar_aluno():
+    id = request.form.get('id') or None
     nome = request.form['nome']
     idade = request.form['idade']
     cidade = request.form['cidade']
@@ -60,11 +69,19 @@ def listar_professor():
 
 @app.route('/professor/form')
 def form_professor():
-    # (id, nome, disciplina)
     return render_template('professor/form.html', professor=(None, '', ''))
 
+@app.route('/professor/editar/<int:id>')
+def editar_professor(id):
+    professor = professor_dao.buscar_por_id(id)
+    if professor is None:
+        flash("Professor não encontrado.", "danger")
+        return redirect('/professor')
+    return render_template('professor/form.html', professor=professor)
+
 @app.route('/professor/salvar/', methods=['POST'])
-def salvar_professor(id=None):
+def salvar_professor():
+    id = request.form.get('id') or None
     nome = request.form['nome']
     disciplina = request.form['disciplina']
     result = professor_dao.salvar(id, nome, disciplina)
@@ -85,8 +102,17 @@ def listar_curso():
 def form_curso():
     return render_template('curso/form.html', curso=(None, '', ''))
 
+@app.route('/curso/editar/<int:id>')
+def editar_curso(id):
+    curso = curso_dao.buscar_por_id(id)
+    if curso is None:
+        flash("Curso não encontrado.", "danger")
+        return redirect('/curso')
+    return render_template('curso/form.html', curso=curso)
+
 @app.route('/curso/salvar/', methods=['POST'])
-def salvar_curso(id=None):
+def salvar_curso():
+    id = request.form.get('id') or None
     nome_curso = request.form['nome_curso']
     duracao = request.form['duracao']
     result = curso_dao.salvar(id, nome_curso, duracao)
@@ -102,6 +128,43 @@ def salvar_curso(id=None):
 def listar_turma():
     lista = turma_dao.listar_turmas()
     return render_template('turma/lista.html', lista=lista)
+
+@app.route('/turma/form')
+def form_turma():
+    return render_template(
+        'turma/form.html',
+        turma=(None, '', None, None),
+        cursos=curso_dao.listar_cursos(),
+        professores=professor_dao.listar_professores()
+    )
+
+@app.route('/turma/editar/<int:id>')
+def editar_turma(id):
+    turma = turma_dao.buscar_por_id(id)
+    if turma is None:
+        flash("Turma não encontrada.", "danger")
+        return redirect('/turma')
+    return render_template(
+        'turma/form.html',
+        turma=turma,
+        cursos=curso_dao.listar_cursos(),
+        professores=professor_dao.listar_professores()
+    )
+
+@app.route('/turma/salvar/', methods=['POST'])
+def salvar_turma():
+    id = request.form.get('id') or None
+    semestre = request.form['semestre']
+    curso_id = request.form['curso_id']
+    professor_id = request.form['professor_id']
+    result = turma_dao.salvar(id, semestre, curso_id, professor_id)
+
+    if result["status"] == "ok":
+        flash("Turma salva com sucesso!", "success")
+    else:
+        flash(result["mensagem"], "danger")
+
+    return redirect('/turma')
 
 @app.route('/saudacao')
 def menu_exercicios():

@@ -1,10 +1,11 @@
 {% include 'dashboard/cabecalho.html' %}
 
-<h1 class="mb-4">Cadastrar Curso</h1>
+<h1 class="mb-4">{{ "Editar" if curso[0] else "Cadastrar" }} Curso</h1>
 
 <div class="row">
   <div class="col-12">
     <form action="/curso/salvar/" method="POST">
+        <input type="hidden" name="id" value="{{ curso[0] or '' }}">
 
         <div class="mb-3">
           <label for="nome_curso" class="form-label">Nome do Curso</label>

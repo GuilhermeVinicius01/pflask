@@ -1,6 +1,9 @@
 {% include 'dashboard/cabecalho.html' %}
 
-<h1 class="mb-4">Lista Turma</h1>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="mb-0">Lista Turma</h1>
+    <a href="/turma/form" class="btn btn-success">+ Novo</a>
+</div>
 
 <div class="row">
     <table class="table table-bordered table-striped">
@@ -13,7 +16,7 @@
                 <th>Ação</th>
             </tr>
         </thead>
-
+        <tbody>
             {% for turma in lista %}
             <tr>
                 <td>{{ turma[0] }}</td>
@@ -22,16 +25,11 @@
                 <td>{{ turma[3] }}</td>
                 <td>
                     <a href="/turma/editar/{{ turma[0] }}" class="btn btn-primary btn-sm">Editar</a>
-                    <a href="/turma/remover/{{ turma[0] }}"
-                       class="btn btn-danger btn-sm"
-                       onclick="return confirm('Tem certeza que deseja remover este registro?');">
-                        Remover
-                    </a>
                 </td>
             </tr>
             {% else %}
             <tr>
-                <td colspan="6" class="text-center">Nenhuma turma cadastrada.</td>
+                <td colspan="5" class="text-center">Nenhuma turma cadastrada.</td>
             </tr>
             {% endfor %}
         </tbody>
