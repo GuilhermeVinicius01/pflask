@@ -21,8 +21,12 @@
                 <td>{{ curso[0] }}</td>
                 <td>{{ curso[1] }}</td>
                 <td>{{ curso[2] }}</td>
-                <td>
+                <td class="d-flex gap-1">
                     <a href="/curso/editar/{{ curso[0] }}" class="btn btn-primary btn-sm">Editar</a>
+                    <form action="/curso/remover/{{ curso[0] }}" method="POST"
+                          onsubmit="return confirm('Tem certeza que deseja remover este registro?');">
+                        <button type="submit" class="btn btn-danger btn-sm">Remover</button>
+                    </form>
                 </td>
             </tr>
             {% else %}

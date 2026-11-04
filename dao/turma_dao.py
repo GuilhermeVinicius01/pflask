@@ -53,3 +53,16 @@ class TurmaDAO:
             return {"status": "erro", "mensagem": f"Erro ao salvar turma: {str(e)}"}
         finally:
             conn.close()
+
+    def remover(self, id):
+        conn = get_connection()
+        try:
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM turma WHERE id = %s", (id,))
+            conn.commit()
+            return {"status": "ok"}
+        except Exception as e:
+            conn.rollback()
+            return {"status": "erro", "mensagem": f"Não foi possível remover a turma: {str(e)}"}
+        finally:
+            conn.close()

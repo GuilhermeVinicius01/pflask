@@ -62,6 +62,16 @@ def salvar_aluno():
 
     return redirect('/aluno')
 
+@app.route('/aluno/remover/<int:id>', methods=['POST'])
+def remover_aluno(id):
+    result = aluno_dao.remover(id)
+    if result["status"] == "ok":
+        flash("Aluno removido com sucesso!", "success")
+    else:
+        flash(result["mensagem"], "danger")
+    return redirect('/aluno')
+
+# ---------------------------- PROFESSOR ----------------------------
 @app.route('/professor')
 def listar_professor():
     lista = professor_dao.listar_professores()
@@ -69,6 +79,7 @@ def listar_professor():
 
 @app.route('/professor/form')
 def form_professor():
+    # (id, nome, disciplina)
     return render_template('professor/form.html', professor=(None, '', ''))
 
 @app.route('/professor/editar/<int:id>')
@@ -93,6 +104,16 @@ def salvar_professor():
 
     return redirect('/professor')
 
+@app.route('/professor/remover/<int:id>', methods=['POST'])
+def remover_professor(id):
+    result = professor_dao.remover(id)
+    if result["status"] == "ok":
+        flash("Professor removido com sucesso!", "success")
+    else:
+        flash(result["mensagem"], "danger")
+    return redirect('/professor')
+
+# ---------------------------- CURSO ----------------------------
 @app.route('/curso')
 def listar_curso():
     lista = curso_dao.listar_cursos()
@@ -124,6 +145,16 @@ def salvar_curso():
 
     return redirect('/curso')
 
+@app.route('/curso/remover/<int:id>', methods=['POST'])
+def remover_curso(id):
+    result = curso_dao.remover(id)
+    if result["status"] == "ok":
+        flash("Curso removido com sucesso!", "success")
+    else:
+        flash(result["mensagem"], "danger")
+    return redirect('/curso')
+
+# ---------------------------- TURMA ----------------------------
 @app.route('/turma')
 def listar_turma():
     lista = turma_dao.listar_turmas()
@@ -131,6 +162,7 @@ def listar_turma():
 
 @app.route('/turma/form')
 def form_turma():
+    # (id, semestre, curso_id, professor_id)
     return render_template(
         'turma/form.html',
         turma=(None, '', None, None),
@@ -164,6 +196,15 @@ def salvar_turma():
     else:
         flash(result["mensagem"], "danger")
 
+    return redirect('/turma')
+
+@app.route('/turma/remover/<int:id>', methods=['POST'])
+def remover_turma(id):
+    result = turma_dao.remover(id)
+    if result["status"] == "ok":
+        flash("Turma removida com sucesso!", "success")
+    else:
+        flash(result["mensagem"], "danger")
     return redirect('/turma')
 
 @app.route('/saudacao')

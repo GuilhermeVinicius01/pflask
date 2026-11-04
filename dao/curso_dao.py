@@ -43,3 +43,16 @@ class CursoDAO:
             return {"status": "erro", "mensagem": f"Erro ao salvar curso: {str(e)}"}
         finally:
             conn.close()
+
+    def remover(self, id):
+        conn = get_connection()
+        try:
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM curso WHERE id = %s", (id,))
+            conn.commit()
+            return {"status": "ok"}
+        except Exception as e:
+            conn.rollback()
+            return {"status": "erro", "mensagem": "Não foi possível remover o curso. Ele pode estar vinculado a uma turma."}
+        finally:
+            conn.close()
