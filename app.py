@@ -6,6 +6,7 @@ from dao.aluno_dao import AlunoDAO
 from dao.professor_dao import ProfessorDAO
 from dao.curso_dao import CursoDAO
 from dao.turma_dao import TurmaDAO
+from dao.matricula_dao import MatriculaDAO
 
 
 app = Flask(__name__)
@@ -16,6 +17,7 @@ aluno_dao = AlunoDAO()
 professor_dao = ProfessorDAO()
 curso_dao = CursoDAO()
 turma_dao = TurmaDAO()
+matricula_dao = MatriculaDAO()
 
 
 @app.route('/')
@@ -71,7 +73,6 @@ def remover_aluno(id):
         flash(result["mensagem"], "danger")
     return redirect('/aluno')
 
-# ---------------------------- PROFESSOR ----------------------------
 @app.route('/professor')
 def listar_professor():
     lista = professor_dao.listar_professores()
@@ -113,7 +114,6 @@ def remover_professor(id):
         flash(result["mensagem"], "danger")
     return redirect('/professor')
 
-# ---------------------------- CURSO ----------------------------
 @app.route('/curso')
 def listar_curso():
     lista = curso_dao.listar_cursos()
@@ -206,6 +206,57 @@ def remover_turma(id):
     else:
         flash(result["mensagem"], "danger")
     return redirect('/turma')
+
+@app.route('/matricula')
+def listar_matricula():
+    lista = matricula_dao.listar_matriculas()
+    return render_template('matricula/lista.html', lista=lista)
+
+@app.route('/matricula/form')
+def form_matricula():
+    # (id, aluno_id, turma_id)
+    return render_template(
+        'matricula/form.html',
+        matricula=(None, None, None),
+        alunos=aluno_dao.listar_alunos(),
+        turmas=turma_dao.listar_turmas()
+    )
+
+@app.route('/matricula/editar/<int:id>')
+def editar_matricula(id):
+    matricula = matricula_dao.buscar_por_id(id)
+    if matricula is None:
+        flash("Matrícula não encontrada.", "danger")
+        return redirect('/matricula')
+    return render_template(
+        'matricula/form.html',
+        matricula=matricula,
+        alunos=aluno_dao.listar_alunos(),
+        turmas=turma_dao.listar_turmas()
+    )
+
+@app.route('/matricula/salvar/', methods=['POST'])
+def salvar_matricula():
+    id = request.form.get('id') or None
+    aluno_id = request.form['aluno_id']
+    turma_id = request.form['turma_id']
+    result = matricula_dao.salvar(id, aluno_id, turma_id)
+
+    if result["status"] == "ok":
+        flash("Matrícula salva com sucesso!", "success")
+    else:
+        flash(result["mensagem"], "danger")
+
+    return redirect('/matricula')
+
+@app.route('/matricula/remover/<int:id>', methods=['POST'])
+def remover_matricula(id):
+    result = matricula_dao.remover(id)
+    if result["status"] == "ok":
+        flash("Matrícula removida com sucesso!", "success")
+    else:
+        flash(result["mensagem"], "danger")
+    return redirect('/matricula')
 
 @app.route('/saudacao')
 def menu_exercicios():

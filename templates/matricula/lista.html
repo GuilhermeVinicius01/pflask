@@ -1,0 +1,47 @@
+{% include 'dashboard/cabecalho.html' %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="mb-0">Listagem de Matrículas</h1>
+    <a href="/matricula/form" class="btn btn-primary">Nova</a>
+</div>
+
+<div class="row">
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Semestre</th>
+                <th>Aluno</th>
+                <th>Curso</th>
+                <th>Professor</th>
+                <th>Disciplina</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for matricula in lista %}
+            <tr>
+                <td>{{ matricula[0] }}</td>
+                <td>{{ matricula[1] }}</td>
+                <td>{{ matricula[2] }}</td>
+                <td>{{ matricula[3] }}</td>
+                <td>{{ matricula[4] }}</td>
+                <td>{{ matricula[5] }}</td>
+                <td class="d-flex gap-1">
+                    <a href="/matricula/editar/{{ matricula[0] }}" class="btn btn-primary btn-sm">Editar</a>
+                    <form action="/matricula/remover/{{ matricula[0] }}" method="POST"
+                          onsubmit="return confirm('Tem certeza que deseja remover este registro?');">
+                        <button type="submit" class="btn btn-danger btn-sm">Remover</button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="7" class="text-center">Nenhuma matrícula cadastrada.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% include 'dashboard/rodape.html' %}

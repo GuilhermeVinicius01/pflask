@@ -1,0 +1,81 @@
+{% include 'dashboard/cabecalho.html' %}
+
+<h1 class="mb-4">{{ "Editar" if matricula[0] else "Cadastrar" }} Matrícula</h1>
+
+<div class="row">
+  <div class="col-12">
+    <form action="/matricula/salvar/" method="POST">
+        <input type="hidden" name="id" value="{{ matricula[0] or '' }}">
+
+        <div class="mb-3">
+          <label for="aluno_id" class="form-label">Aluno</label>
+          <select class="form-select" id="aluno_id" name="aluno_id" required>
+            <option value="" disabled {{ 'selected' if not matricula[1] }}>Selecione...</option>
+            {% for a in alunos %}
+            <option value="{{ a[0] }}" {{ 'selected' if a[0] == matricula[1] }}>{{ a[1] }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="turma_id" class="form-label">Turma</label>
+          <select class="form-select" id="turma_id" name="turma_id" required>
+            <option value="" disabled {{ 'selected' if not matricula[2] }}>Selecione...</option>
+            {% for t in turmas %}
+            <option value="{{ t[0] }}" {{ 'selected' if t[0] == matricula[2] }}>
+              {{ t[1] }} - {{ t[2] }} - {{ t[3] }} ({{ t[4] }})
+            </option>
+            {% endfor %}
+          </select>
+          <div class="form-text">O curso da matrícula é o curso da turma escolhida.</div>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-primary">Salvar</button>
+          <a href="/matricula" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+  </div>
+</div>
+
+{% include 'dashboard/rodape.html' %}{% include 'dashboard/cabecalho.html' %}
+
+<h1 class="mb-4">{{ "Editar" if matricula[0] else "Cadastrar" }} Matrícula</h1>
+
+<div class="row">
+  <div class="col-12">
+    <form action="/matricula/salvar/" method="POST">
+        <input type="hidden" name="id" value="{{ matricula[0] or '' }}">
+
+        <div class="mb-3">
+          <label for="aluno_id" class="form-label">Aluno</label>
+          <select class="form-select" id="aluno_id" name="aluno_id" required>
+            <option value="" disabled {{ 'selected' if not matricula[1] }}>Selecione...</option>
+            {% for a in alunos %}
+            <option value="{{ a[0] }}" {{ 'selected' if a[0] == matricula[1] }}>{{ a[1] }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="turma_id" class="form-label">Turma</label>
+          <select class="form-select" id="turma_id" name="turma_id" required>
+            <option value="" disabled {{ 'selected' if not matricula[2] }}>Selecione...</option>
+            {% for t in turmas %}
+            <option value="{{ t[0] }}" {{ 'selected' if t[0] == matricula[2] }}>
+              {{ t[1] }} - {{ t[2] }} - {{ t[3] }} ({{ t[4] }})
+            </option>
+            {% endfor %}
+          </select>
+          <div class="form-text">O curso da matrícula é o curso da turma escolhida.</div>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-primary">Salvar</button>
+          <a href="/matricula" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+  </div>
+</div>
+
+{% include 'dashboard/rodape.html' %}
