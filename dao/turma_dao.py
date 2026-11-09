@@ -8,7 +8,7 @@ class TurmaDAO:
         try:
             cursor = conn.cursor()
             cursor.execute("""
-                SELECT turma.id, turma.semestre, curso.nome_curso, professor.nome
+                SELECT turma.id, turma.semestre, curso.nome_curso, professor.nome, professor.disciplina
                 FROM turma
                 JOIN curso ON curso.id = turma.curso_id
                 JOIN professor ON professor.id = turma.professor_id

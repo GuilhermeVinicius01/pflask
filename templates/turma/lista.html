@@ -13,6 +13,7 @@
                 <th>Semestre</th>
                 <th>Curso</th>
                 <th>Professor</th>
+                <th>Disciplina</th>
                 <th>Ação</th>
             </tr>
         </thead>
@@ -23,6 +24,7 @@
                 <td>{{ turma[1] }}</td>
                 <td>{{ turma[2] }}</td>
                 <td>{{ turma[3] }}</td>
+                <td>{{ turma[4] }}</td>
                 <td class="d-flex gap-1">
                     <a href="/turma/editar/{{ turma[0] }}" class="btn btn-primary btn-sm">Editar</a>
                     <form action="/turma/remover/{{ turma[0] }}" method="POST"
@@ -33,7 +35,7 @@
             </tr>
             {% else %}
             <tr>
-                <td colspan="5" class="text-center">Nenhuma turma cadastrada.</td>
+                <td colspan="6" class="text-center">Nenhuma turma cadastrada.</td>
             </tr>
             {% endfor %}
         </tbody>
